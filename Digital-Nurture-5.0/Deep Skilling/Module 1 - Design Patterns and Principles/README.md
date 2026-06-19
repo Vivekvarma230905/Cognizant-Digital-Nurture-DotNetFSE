@@ -1,8 +1,8 @@
-# Design Patterns Implementation in Java
+# Design Patterns Implementation in .NET (C#)
 
 ## Objective
 
-This repository contains implementations of various software design patterns in Java. The objective is to understand and demonstrate the practical application of creational, structural, behavioral, and architectural design patterns.
+This repository contains implementations of various software design patterns in C#. The objective is to understand and demonstrate the practical application of creational, structural, behavioral, and architectural design patterns using the .NET platform.
 
 ---
 
@@ -15,7 +15,7 @@ A logging utility class should have only one instance throughout the application
 
 ### Components
 - Logger
-- SingletonPatternTest
+- Program
 
 ### Key Concept
 Ensures a class has only one instance and provides a global access point.
@@ -28,12 +28,14 @@ Ensures a class has only one instance and provides a global access point.
 A document management system creates different types of documents such as Word, PDF, and Excel.
 
 ### Components
-- Document
+- IDocument
 - WordDocument
 - PdfDocument
 - ExcelDocument
 - DocumentFactory
-- Concrete Factories
+- WordDocumentFactory
+- PdfDocumentFactory
+- ExcelDocumentFactory
 
 ### Key Concept
 Creates objects without specifying their exact classes.
@@ -47,7 +49,7 @@ A computer system requires creation of complex objects with optional configurati
 
 ### Components
 - Computer
-- Builder (Nested Class)
+- ComputerBuilder
 
 ### Key Concept
 Constructs complex objects step-by-step.
@@ -60,10 +62,11 @@ Constructs complex objects step-by-step.
 A payment system integrates multiple third-party payment gateways with different interfaces.
 
 ### Components
-- PaymentProcessor
+- IPaymentProcessor
 - PayPalGateway
 - StripeGateway
-- Adapters
+- PayPalAdapter
+- StripeAdapter
 
 ### Key Concept
 Converts one interface into another expected by clients.
@@ -73,13 +76,13 @@ Converts one interface into another expected by clients.
 ## Exercise 5: Decorator Pattern
 
 ### Scenario
-A notification system supports Email, SMS, and Slack notifications.
+A notification system supports Email, SMS, and Teams notifications.
 
 ### Components
-- Notifier
+- INotifier
 - EmailNotifier
 - SMSNotifierDecorator
-- SlackNotifierDecorator
+- TeamsNotifierDecorator
 
 ### Key Concept
 Adds behavior dynamically without modifying existing classes.
@@ -92,7 +95,7 @@ Adds behavior dynamically without modifying existing classes.
 An image viewer application loads images from a remote server using lazy loading and caching.
 
 ### Components
-- Image
+- IImage
 - RealImage
 - ProxyImage
 
@@ -107,8 +110,8 @@ Controls access to another object and improves performance through lazy initiali
 A stock market application notifies multiple clients whenever stock prices change.
 
 ### Components
-- Stock
-- Observer
+- IObserver
+- ISubject
 - StockMarket
 - MobileApp
 - WebApp
@@ -124,7 +127,7 @@ Defines a one-to-many dependency between objects.
 A payment system supports multiple payment methods selected at runtime.
 
 ### Components
-- PaymentStrategy
+- IPaymentStrategy
 - CreditCardPayment
 - PayPalPayment
 - PaymentContext
@@ -140,7 +143,7 @@ Encapsulates interchangeable algorithms.
 A home automation system issues commands to control devices.
 
 ### Components
-- Command
+- ICommand
 - Light
 - LightOnCommand
 - LightOffCommand
@@ -172,8 +175,8 @@ Separates application into Model, View, and Controller layers.
 A customer service depends on a customer repository.
 
 ### Components
+- ICustomerRepository
 - CustomerRepository
-- CustomerRepositoryImpl
 - CustomerService
 
 ### Key Concept
@@ -239,13 +242,23 @@ Provide higher-level application structure and dependency management.
 
 # Technologies Used
 
-- Java
+- C#
+- .NET 8
 - Object-Oriented Programming (OOP)
 - Visual Studio Code
-- JDK
+- .NET SDK
+
+---
+
+# How to Run
+
+```bash
+dotnet build
+dotnet run
+```
 
 ---
 
 # Conclusion
 
-This project demonstrates the implementation of eleven commonly used design patterns in Java. Each pattern addresses specific software design challenges and promotes best practices for building maintainable, scalable, and reusable applications.
+This project demonstrates the implementation of eleven commonly used design patterns in .NET (C#). Each pattern addresses specific software design challenges and promotes best practices for building maintainable, scalable, and reusable applications.
