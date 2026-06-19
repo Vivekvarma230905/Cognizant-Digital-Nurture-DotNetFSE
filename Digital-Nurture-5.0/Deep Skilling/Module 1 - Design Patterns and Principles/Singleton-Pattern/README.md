@@ -1,4 +1,3 @@
-```markdown
 # Singleton Pattern Example (.NET / C#)
 
 ## Objective
@@ -17,11 +16,13 @@ A logging utility is required in an application. To maintain consistent logging 
 
 ## Project Structure
 
-SingletonPatternExample  
-│  
-├── Logger.cs  
-├── Program.cs  
-└── README.md  
+```
+SingletonPatternExample
+│
+├── Logger.cs
+├── Program.cs
+└── README.md
+```
 
 ---
 
@@ -55,7 +56,9 @@ The test class verifies that:
 
 ### Private Static Instance
 
-    private static Logger instance;
+```csharp
+private static Logger instance;
+```
 
 Stores the single instance of the class.
 
@@ -63,9 +66,11 @@ Stores the single instance of the class.
 
 ### Private Constructor
 
-    private Logger()
-    {
-    }
+```csharp
+private Logger()
+{
+}
+```
 
 Prevents direct object creation from outside the class.
 
@@ -73,17 +78,19 @@ Prevents direct object creation from outside the class.
 
 ### Global Access Property
 
-    public static Logger Instance
+```csharp
+public static Logger Instance
+{
+    get
     {
-        get
+        if (instance == null)
         {
-            if (instance == null)
-            {
-                instance = new Logger();
-            }
-            return instance;
+            instance = new Logger();
         }
+        return instance;
     }
+}
+```
 
 Creates the object only once and returns the same instance whenever requested.
 
@@ -91,28 +98,32 @@ Creates the object only once and returns the same instance whenever requested.
 
 ### Example Logger Method
 
-    public void Log(string message)
-    {
-        Console.WriteLine($"Log: {message}");
-    }
+```csharp
+public void Log(string message)
+{
+    Console.WriteLine($"Log: {message}");
+}
+```
 
 ---
 
 ### Usage Example
 
-    class Program
+```csharp
+class Program
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
-        {
-            Logger logger1 = Logger.Instance;
-            Logger logger2 = Logger.Instance;
+        Logger logger1 = Logger.Instance;
+        Logger logger2 = Logger.Instance;
 
-            logger1.Log("First message");
-            logger2.Log("Second message");
+        logger1.Log("First message");
+        logger2.Log("Second message");
 
-            Console.WriteLine(object.ReferenceEquals(logger1, logger2));
-        }
+        Console.WriteLine(object.ReferenceEquals(logger1, logger2));
     }
+}
+```
 
 ---
 
@@ -127,26 +138,27 @@ Creates the object only once and returns the same instance whenever requested.
 
 ## Optional Improvement (Thread-Safe Version)
 
-    private static readonly object lockObj = new object();
+```csharp
+private static readonly object lockObj = new object();
 
-    public static Logger Instance
+public static Logger Instance
+{
+    get
     {
-        get
+        lock (lockObj)
         {
-            lock (lockObj)
+            if (instance == null)
             {
-                if (instance == null)
-                {
-                    instance = new Logger();
-                }
+                instance = new Logger();
             }
-            return instance;
         }
+        return instance;
     }
+}
+```
 
 ---
 
 ## Summary
 
 This project demonstrates how the Singleton Pattern ensures a single shared instance of a class in a .NET application. It is commonly used for logging, configuration management, caching, and other shared services where only one instance should exist.
-```
