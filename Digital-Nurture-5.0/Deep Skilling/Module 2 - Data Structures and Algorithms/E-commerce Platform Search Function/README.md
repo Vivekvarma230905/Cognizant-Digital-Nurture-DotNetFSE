@@ -25,6 +25,7 @@ dotnet build
 dotnet run
 ```
 
+```
 ## Project Structure
 EcommerceSearchExample/
 ├── EcommerceSearchExample.csproj
@@ -32,7 +33,7 @@ EcommerceSearchExample/
 ├── SearchAlgorithms.cs
 ├── Program.cs
 └── README.md
-
+```
 
 ## Algorithms Comparison
 
