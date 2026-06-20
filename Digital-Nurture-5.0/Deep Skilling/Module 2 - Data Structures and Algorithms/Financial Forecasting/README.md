@@ -26,7 +26,7 @@ cd FinancialForecastingExample
 dotnet build
 dotnet run
 ```
-
+## Project Structure
 ```
 FinancialForecastingExample/
 ├── FinancialForecastingExample.csproj
@@ -249,6 +249,3 @@ Year-by-year forecast breakdown
 **Exercise**: Exercise 7 - Financial Forecasting  
 **Language**: C# (.NET 8.0)  
 **Focus**: Recursive Algorithms, Time Complexity, Optimization
-
-
-## Project Structure
