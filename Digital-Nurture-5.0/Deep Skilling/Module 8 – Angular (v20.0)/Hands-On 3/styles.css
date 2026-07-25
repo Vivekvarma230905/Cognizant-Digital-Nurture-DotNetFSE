@@ -1,0 +1,32 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 1rem;
+  background: #f7f7f7;
+}
+
+.course-card {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  background: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card.expanded {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+.badge.passed { background: rgba(76, 175, 80, 0.15); color: #2e7d32; }
+.badge.failed { background: rgba(244, 67, 54, 0.12); color: #c62828; }
+.badge.pending { background: rgba(158, 158, 158, 0.15); color: #424242; }
