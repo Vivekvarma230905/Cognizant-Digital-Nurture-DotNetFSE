@@ -1,0 +1,113 @@
+// app.module.ts
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, FormGroup, FormControl } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { Component, Injectable, OnInit } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class EmployeeService {
+  getEmployees() {
+    return [
+      { id: 101, name: 'Rahul', department: 'HR' },
+      { id: 102, name: 'Priya', department: 'IT' },
+      { id: 103, name: 'Amit', department: 'Sales' }
+    ];
+  }
+}
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <h2>Employee Management</h2>
+
+    <input [(ngModel)]="search" placeholder="Search Employee">
+
+    <button (click)="toggle()">Show/Hide Employees</button>
+
+    <div *ngIf="showEmployees">
+
+      <ul>
+        <li *ngFor="let emp of employees">
+          {{emp.id}} - {{emp.name}} - {{emp.department}}
+        </li>
+      </ul>
+
+    </div>
+
+    <h3>Reactive Form</h3>
+
+    <form [formGroup]="employeeForm" (ngSubmit)="submit()">
+
+      <input formControlName="name" placeholder="Employee Name">
+
+      <input formControlName="department" placeholder="Department">
+
+      <button type="submit">Submit</button>
+
+    </form>
+
+    <h3>API Users</h3>
+
+    <button (click)="loadUsers()">Load Users</button>
+
+    <ul>
+      <li *ngFor="let user of users">
+        {{user.name}}
+      </li>
+    </ul>
+  `
+})
+
+export class AppComponent implements OnInit {
+
+  employees: any[] = [];
+  users: any[] = [];
+  search = '';
+  showEmployees = true;
+
+  employeeForm = new FormGroup({
+    name: new FormControl(''),
+    department: new FormControl('')
+  });
+
+  constructor(
+    private service: EmployeeService,
+    private http: HttpClient
+  ) {}
+
+  ngOnInit() {
+    this.employees = this.service.getEmployees();
+  }
+
+  toggle() {
+    this.showEmployees = !this.showEmployees;
+  }
+
+  submit() {
+    console.log(this.employeeForm.value);
+  }
+
+  loadUsers() {
+    this.http
+      .get<any[]>('https://jsonplaceholder.typicode.com/users')
+      .subscribe(data => {
+        this.users = data;
+      });
+  }
+}
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+  providers: [EmployeeService],
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
